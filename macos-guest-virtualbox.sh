@@ -10,9 +10,9 @@
 
 function set_variables() {
 # Customize the installation by setting these variables:
-vm_name="macOS"                  # name of the VirtualBox virtual machine
-macOS_release_name="Catalina"    # install "HighSierra" "Mojave" or "Catalina"
-storage_size=80000               # VM disk image size in MB, minimum 22000
+vm_name="macOSX"                  # name of the VirtualBox virtual machine
+macOS_release_name="HighSierra"    # install "HighSierra" "Mojave" or "Catalina"
+storage_size=22000               # VM disk image size in MB, minimum 22000
 cpu_count=2                      # VM CPU cores, minimum 2
 memory_size=4096                 # VM RAM in MB, minimum 2048
 gpu_vram=128                     # VM video RAM in MB, minimum 34, maximum 128
@@ -676,7 +676,8 @@ fi
 
 function configure_vm() {
 print_dimly "stage: configure_vm"
-VBoxManage modifyvm "${vm_name}" --cpus "${cpu_count}" --memory "${memory_size}" \
+VBoxManage modifyvm "${vm_name}" --cpus "${cpu_count}" --memory "${memory_size}"
+VBoxManage modifyvm "${vm_name}" --cpu-profile "Intel Xeon X5482 3.20GHz" \
  --vram "${gpu_vram}" --pae on --boot1 none --boot2 none --boot3 none \
  --boot4 none --firmware efi --rtcuseutc on --usbxhci on --chipset ich9 \
  --mouse usbtablet --keyboard usb --audiocontroller hda --audiocodec stac9221
